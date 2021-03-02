@@ -1,0 +1,68 @@
+<div class="container">
+
+  <form [formGroup]="customerForm">
+    <div class="form-group">
+
+        <input
+            type="text"
+            class="form-control w-100"
+            formControlName="id"
+            name="id"
+            placeholder="ID"
+            [readOnly]="isEdit">
+    </div>
+    <div class="form-group">
+        <input
+            type="text"
+            class="form-control w-100"
+            formControlName="name"
+            name="name"
+            placeholder="Name">
+    </div>
+    <div class="form-group">
+        <input
+            type="text"
+            class="form-control w-100"
+            formControlName="gender"
+            name="gender"
+            placeholder="Gender">
+    </div>
+    <div class="form-group">
+        <input
+            type="text"
+            class="form-control w-100"
+            formControlName="address"
+            name="address"
+            placeholder="Address">
+    </div>
+  </form>
+  <button class="btn btn-success" (click)="add()" *ngIf="!isEdit">Add</button>
+  <button class="btn btn-success" (click)="update()" *ngIf="isEdit">Update</button>
+  <button class="btn btn-danger" (click)="resetForm()" *ngIf="!isEdit">Reset</button>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let customer of customerList">
+        <th scope="row">{{customer.id}}</th>
+        <td>{{customer.name}}</td>
+        <td>{{customer.gender}}</td>
+        <td>{{customer.address}}</td>
+        <td>
+          <button class="btn btn-primary" (click)="edit(customer._id)" >Edit</button>
+          <button class="btn btn-warning" (click)="deleteCustomer(customer._id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
