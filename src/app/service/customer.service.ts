@@ -9,25 +9,25 @@ import { Customer } from '../models/cusomter.interface';
 export class CustomerService {
 
   private API_URL: string = environment.api
-  studentList : Customer[] = [];
+  customerList : Customer[] = [];
 
   constructor(private http: HttpClient) {
   }
 
-  addStudent(params:any) {
+  addCustomers(params:any) {
     return this.http.post(`${this.API_URL}add-customer`,params)
   }
 
-  getStudents(){
+  getCustomers(){
     return this.http.get(`${this.API_URL}`)
   }
 
 
-  studentEdit(student: any){
-    let present: Boolean = false;
-    this.studentList.map((val, index)=>{
-      if(val.id == student.id) {this.studentList[index] = student;present=true}
-    });
-    return present;
+  updateCustomer(params: any) {
+   return this.http.put(`${this.API_URL}update-customer/${params._id}`,params)
+  }
+
+  deleteCustomer(id: any) {
+   return this.http.delete(`${this.API_URL}delete-customer/${id}`)
   }
 }
